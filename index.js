@@ -12,8 +12,8 @@ try {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
     console.log(`Payload: ${payload}`);
 
-    //var found = findSecrets(pathToSearch, fileTypes);
-    var found = findSecrets("C:\\work\\pd\\github\\napali-eshop", ".json");
+    var found = findSecrets(pathToSearch, fileTypes);
+    //var found = findSecrets("C:\\work\\pd\\github\\napali-eshop", ".json");
     if(found && found.length > 0){
         core.setFailed('Found secrets in source files!');
         core.setOutput('foundSecrets', true);
