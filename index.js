@@ -5,7 +5,7 @@ const fs = require('fs');
 
 try {
     console.log("Starting credentials scanner");
-    const pathToSearch = core.getInput('path');
+    const pathToSearch = core.getInput('pathToSearch');
     console.log(`Path to search=${pathToSearch}`);
     const fileTypes = core.getInput('fileTypes');
     console.log(`Fle types=${fileTypes}`);
