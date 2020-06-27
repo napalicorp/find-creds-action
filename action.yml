@@ -1,0 +1,17 @@
+name: 'Find Creds'
+description: 'Finds credentials in source files'
+inputs:
+  pathToSearch:
+    description: 'Path to search for files'
+    required: true
+    default: '.'
+  fileTypes:
+    description: 'File types to search for'
+    required: true
+    default: '.cs$'
+outputs:
+  foundSecrets:
+    description: 'true if found secrents, otherwise false'
+runs:
+  using: 'node12'
+  main: 'index.js'
