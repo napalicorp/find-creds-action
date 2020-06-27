@@ -1,0 +1,1 @@
+# This is a demo GitHub Action, do not attempt to use this as a credential scanner
