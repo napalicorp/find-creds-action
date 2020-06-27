@@ -6,11 +6,11 @@ const fs = require('fs');
 try {
     console.log("Starting credentials scanner");
     const pathToSearch = core.getInput('path');
-    console.log(`Path to search={pathToSearch}`);
+    console.log(`Path to search=${pathToSearch}`);
     const fileTypes = core.getInput('fileTypes');
-    console.log(`Fle types={fileTypes}`);
+    console.log(`Fle types=${fileTypes}`);
     const payload = JSON.stringify(github.context.payload, undefined, 2);
-    console.log(`Payload: {payload}`);
+    console.log(`Payload: ${payload}`);
 
     searchFilesInDirectory(pathToSearch, "[a-z0-9\/+]{40}", "cs");
 } catch (error) {
@@ -33,7 +33,7 @@ function searchFilesInDirectory(dir, filter, ext) {
         // We want full words, so we use full word boundary in regex.
         const regex = new RegExp('\\b' + filter + '\\b');
         if (regex.test(fileContent)) {
-            console.log(`Secret was found in file: ${file}`);
+            console.log(`Secret was found in the file: ${file}`);
             foundCount ++;
         }
     });
