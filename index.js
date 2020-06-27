@@ -12,7 +12,9 @@ try {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
     console.log(`Payload: ${payload}`);
 
-    searchFilesInDirectory(pathToSearch, "[a-z0-9\/+]{40}", "cs");
+    //searchFilesInDirectory(pathToSearch, "[a-z0-9\/+]{40}", fileTypes);
+    searchFilesInDirectory("C:\\work\\pd\\github\\napali-eshop", "(\"|')[a-z0-9\/+]{40}(\"|')", ".json");
+    //searchFilesInDirectory("C:\\work\\pd\\github\\napali-eshop", "[a-z0-9\/+]{40}", ".json");
 } catch (error) {
     core.setFailed(error.message);
 }
@@ -29,9 +31,8 @@ function searchFilesInDirectory(dir, filter, ext) {
 
     files.forEach(file => {
         const fileContent = fs.readFileSync(file);
-
-        // We want full words, so we use full word boundary in regex.
-        const regex = new RegExp('\\b' + filter + '\\b');
+        //console.log(`Checking: ${file}`);
+        const regex = new RegExp("(\"|')[a-z0-9\/+]{40}(\"|')", "ig");
         if (regex.test(fileContent)) {
             console.log(`Secret was found in the file: ${file}`);
             foundCount ++;
@@ -65,6 +66,7 @@ function getFilesInDirectory(dir, ext) {
             const nestedFiles = getFilesInDirectory(filePath, ext);
             files = files.concat(nestedFiles);
         } else {
+            //console.log(`Found: ${path.extname(file)}`);
             if (path.extname(file) === ext) {
                 files.push(filePath);
             }
